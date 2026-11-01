@@ -22,7 +22,6 @@
 // Execute `rustlings hint tests5` or use the `hint` watch subcommand for a
 // hint.
 
-// I AM NOT DONE
 
 /// # Safety
 ///
@@ -31,8 +30,14 @@ unsafe fn modify_by_address(address: usize) {
     // TODO: Fill your safety notice of the code block below to match your
     // code's behavior and the contract of this function. You may use the
     // comment of the test below as your format reference.
+    // SAFETY: 
+    // 根据该函数的契约（# Safety），调用者已保证 `address` 指向一个有效的、独占的 `u32` 内存地址。
+    // 因此，将其转换为裸指针并进行解引用赋值是安全的
     unsafe {
-        todo!("Your code goes here")
+        // 1. 将 usize 转换回裸指针
+        let ptr = address as *mut u32;
+        // 2. 解引用该指针并赋予新值
+        *ptr = 0xAABBCCDD;
     }
 }
 
